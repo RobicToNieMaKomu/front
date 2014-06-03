@@ -1,7 +1,8 @@
 package com.polmos.cc.rest;
 
 import java.net.URI;
-import javax.json.JsonObject;
+import javax.json.JsonArray;
+import javax.json.JsonStructure;
 
 /**
  *
@@ -9,7 +10,7 @@ import javax.json.JsonObject;
  */
 public interface RESTClient {
 
-    JsonObject sendGetRequest(String url);
+    JsonStructure sendGetRequest(String url);
     
-    URI sendPostRequest(String url, JsonObject body);
+    URI sendPostRequest(String url, JsonArray body);
 }

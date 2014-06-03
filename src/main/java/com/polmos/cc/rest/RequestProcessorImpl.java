@@ -5,6 +5,7 @@ import com.polmos.cc.constants.OperationType;
 import java.io.IOException;
 import java.net.URI;
 import javax.inject.Inject;
+import javax.json.JsonArray;
 import javax.json.JsonObject;
 import org.jboss.logging.Logger;
 
@@ -24,10 +25,10 @@ public class RequestProcessorImpl implements RequestProcessor {
         JsonObject result = null;
         validateInput(range, type);
         try {
-            JsonObject timeSeries = restClient.sendGetRequest(timeSeriesURL(range, type));
+            JsonArray timeSeries = (JsonArray) restClient.sendGetRequest(timeSeriesURL(range, type));
             URI urlToResource = restClient.sendPostRequest(mstURL(type), timeSeries);
             logger.info("urlToResource:" + urlToResource);
-            result = (urlToResource != null) ? restClient.sendGetRequest(urlToResource.toString()) : null; 
+            result = (urlToResource != null) ? (JsonObject)restClient.sendGetRequest(urlToResource.toString()) : null; 
         } catch (Exception e) {
             logger.error("Exception occurred during processing mst", e);
         }

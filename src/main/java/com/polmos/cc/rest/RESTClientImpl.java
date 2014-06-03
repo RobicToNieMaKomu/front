@@ -3,12 +3,12 @@ package com.polmos.cc.rest;
 import java.io.StringReader;
 import java.net.URI;
 import javax.json.Json;
-import javax.json.JsonObject;
+import javax.json.JsonArray;
+import javax.json.JsonStructure;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.Invocation;
-import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 import org.jboss.logging.Logger;
 
@@ -25,8 +25,8 @@ public class RESTClientImpl implements RESTClient {
     }
 
     @Override
-    public JsonObject sendGetRequest(String url) {
-        JsonObject result = null;
+    public JsonStructure sendGetRequest(String url) {
+        JsonStructure result = null;
         if (url != null && !url.isEmpty()) {
             logger.debug("Sending get request to url:" + url);
             try {
@@ -34,7 +34,7 @@ public class RESTClientImpl implements RESTClient {
                 Invocation request = client.target(url).request(CONTENT_TYPE).accept(CONTENT_TYPE).buildGet();
                 String response = request.invoke(String.class);
                 logger.debug("Response:" + response);
-                result = Json.createReader(new StringReader(response)).readObject();
+                result = Json.createReader(new StringReader(response)).read();
             } catch (Exception e) {
                 logger.error("Couldnt get resource", e);
             }
@@ -43,7 +43,7 @@ public class RESTClientImpl implements RESTClient {
     }
 
     @Override
-    public URI sendPostRequest(String url, JsonObject body) {
+    public URI sendPostRequest(String url, JsonArray body) {
         URI resourceUrl = null;
         if (url != null) {
             logger.debug("Sending post request to url:" + url);

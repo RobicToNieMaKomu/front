@@ -19,4 +19,6 @@ public class Constants {
     public static final String SPREAD_PROPERTY = "spread";
     public static final String URL_TO_CC_SERVICE = "http://cc-comparator.rhcloud.com/rest/mst";
     public static final String URL_TO_MST_SERVICE = "http://mst-comparator.rhcloud.com/rest/mst";
+    public static final String JOBJECT = "jsonObject";
+    public static final String JARRAY = "jsonArray";
 }
