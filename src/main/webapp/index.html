@@ -6,12 +6,10 @@
         <meta name="description" content="">
         <meta name="author" content="RobicToNieMaKomu">
 
-        <title>Epic graph</title>
+        <title>Forex currency correlations</title>
 
-        <!-- Bootstrap core CSS -->
         <link href="assets/css/bootstrap.css" rel="stylesheet">
 
-        <!-- Custom CSS for the '3 Col Portfolio' Template -->
         <link href="assets/css/portfolio-item.css" rel="stylesheet">
 
         <script type="text/javascript" src="assets/js/angular.min.js"></script>
@@ -20,34 +18,26 @@
     <body ng-controller="mstController as mst">
         <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
             <div class="container">
-               <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="http://startbootstrap.com">Start Bootstrap</a>
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="http://front-comparator.rhcloud.com/"><span class="glyphicon glyphicon-home"></span> Home</a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <div class="collapse navbar-collapse navbar-ex1-collapse pull-right">
                     <ul class="nav navbar-nav">
-                        <li><a href="#about">About</a>
+                        <li><a href="#top"><span class="glyphicon glyphicon-info-sign"></span> About</a>
                         </li>
-                        <li><a href="#contact">Contact</a>
+                        <li>
+                            <a href="#contact"><span class="glyphicon glyphicon-envelope"></span> Contact</a>
+                            <!--http://pl.linkedin.com/pub/piotr-szcz%C4%99%C5%9Bniak/77/597/489!-->
                         </li>
                     </ul>
                 </div>
-                <!-- /.navbar-collapse -->
             </div>
-            <!-- /.container -->
         </nav>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Portfolio Item
-                        <small>Explain Your Work</small>
-                    </h1>
+                    <h1 class="page-header">Currency correlations on Forex</h1>
                 </div>
             </div>
             <div class="row">
@@ -55,17 +45,19 @@
                     <div id="cy" style="width: 750px; height: 500px;"> </div>
                 </div>
                 <div class="col-md-4">
-                    <h3>Project Description</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
-                    <h3>Project Details</h3>
+                    <h3>What is currency correlation?</h3>
+                    <p>Correlation coefficient is the measure of relationship between assets. If two currencies are correlated, they will move in the same direction in Forex.</p>
+                    <hr/>
+                    <h4>Time frame</h4>
                     <div class="btn-group btn-group-vertical">
-                        <button data-toggle="dropdown" class="btn dropdown-toggle btn-primary">Span of time window<span class="caret"></span></button>
+                        <button data-toggle="dropdown" class="btn dropdown-toggle btn-primary"><span class="glyphicon glyphicon-collapse-down"></span> Span of time frame <span class="caret"></span></button>
                         <ul class="dropdown-menu" >
                             <li ng-repeat="time in mst.timeRanges"><a href="#">{{time}}</a></li>
                         </ul>
                     </div>
-                    <h3>Project Details</h3>
-                    <button class="btn btn-success" ng-click="mst.generateMST()">Create MST</button>
+                    <hr/>
+                    <h4>Minimum Spanning Tree</h4>
+                    <button class="btn btn-success" ng-click="mst.generateMST()"><span class="glyphicon glyphicon-refresh"></span> Draw MST</button>
                 </div>
             </div>
             <div class="row">
