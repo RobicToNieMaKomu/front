@@ -11,7 +11,66 @@
             console.log('$scope:' + this.scope);
             console.log('$http:' + this.http);
             loadMST(this.scope, this.http);
-            $('#cy').cytoscape({
+        };
+    });
+
+    var aboutContent = '<div><p>This is about content.</p></div>';
+    var contactContent = '<div><p><img ng-></span>This is about content.</p></div>';
+
+    app.controller('headerController', function() {
+        console.log('header ctrl');
+        this.showAbout = function() {
+            BootstrapDialog.show({
+                title: '<h4><b>About</b></h4>',
+                message: aboutContent
+            });
+        };
+        this.showContact = function() {
+            BootstrapDialog.show({
+                title: '<h4><b>Contact</b></h4>',
+                message: contactContent
+            });
+        };
+    });
+
+    var range = ['1', '2', '3', '4'];
+
+    var Node = function(name) {
+        return {
+            data: {
+                id: "" + name
+            }};
+    };
+
+    var Edge = function(i) {
+        return {
+            data: {
+                id: "" + i + (i + 1),
+                weight: 10,
+                source: i,
+                target: i + 1
+            }};
+    };
+
+    function loadMST($scope, $http) {
+        $http.get('http://front-comparator.rhcloud.com/rest/mst?range=1&type=bid').
+                success(function(data) {
+                    console.log('wohoo!');
+                    console.log(data);
+                    var edges = toEdges(data);
+                    var nodes = toNodes(data);
+                    drawMST(nodes, edges);
+                });
+    }
+    
+    function toEdges(data) {
+    }
+    
+    function toNodes(data) {
+    }
+    
+    function drawMST(n, e) {
+        $('#cy').cytoscape({
                 // these options hide parts of the graph during interaction
                 //hideEdgesOnViewport: true,
                 //hideLabelsOnViewport: true,
@@ -48,78 +107,9 @@
                     cy.elements().unselectify();
                 },
                 elements: {
-                    nodes: dummyData('nodes', 10),
-                    edges: dummyData('edges', 10)
+                    nodes: n,
+                    edges: e
                 }
             });
-        };
-        ;
-    });
-
-    app.controller('canvasController', function() {
-        console.log('canvas controller!');
-//        var canvas = document.getElementById('canvas');
-//        var context = canvas.getContext('2d');
-    });
-
-    var aboutContent = '<div><p>This is about content.</p></div>';
-    var contactContent = '<div><p><img ng-></span>This is about content.</p></div>';
-
-    app.controller('headerController', function() {
-        console.log('header ctrl');
-        this.showAbout = function() {
-            BootstrapDialog.show({
-                title: '<h4><b>About</b></h4>',
-                message: aboutContent
-            });
-        };
-        this.showContact = function() {
-            BootstrapDialog.show({
-                title: '<h4><b>Contact</b></h4>',
-                message: contactContent
-            });
-        };
-    });
-
-    var range = ['1', '2', '3', '4'];
-
-    var dummyData = function(type, size) {
-        var output = [];
-        if ('nodes' === type) {
-            for (var i = 0; i < size; i++) {
-                output.push(Node(i));
-            }
-        } else if ('edges' === type) {
-            for (var i = 0; i < size - 1; i++) {
-                output.push(Edge(i));
-            }
-        }
-        return output;
-    };
-
-    var Node = function(name) {
-        return {
-            data: {
-                id: "" + name
-            }};
-    };
-
-    var Edge = function(i) {
-        return {
-            data: {
-                id: "" + i + (i + 1),
-                weight: 10,
-                source: i,
-                target: i + 1
-            }};
-    };
-
-    function loadMST($scope, $http) {
-        $http.get('http://front-comparator.rhcloud.com/rest/mst?range=1&type=bid').
-                success(function(data) {
-                    console.log('wohoo!');
-                    console.log(data);
-                    //$scope.greeting = data;
-                });
     }
 })();
