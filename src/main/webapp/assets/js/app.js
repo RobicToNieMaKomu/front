@@ -115,9 +115,10 @@
     };
 
     function loadMST($scope, $http) {
-        $http.get('http://front-comparator.rhcloud.com/mst?range=XYZ&type=XYZ').
+        $http.get('http://front-comparator.rhcloud.com/rest/mst?range=1&type=bid').
                 success(function(data) {
                     console.log('wohoo!');
+                    console.log(data);
                     //$scope.greeting = data;
                 });
     }
