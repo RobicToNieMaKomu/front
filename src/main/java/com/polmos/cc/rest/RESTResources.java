@@ -28,7 +28,7 @@ public class RESTResources {
 
     @GET
     @Path("/mst")
-    public Response getTimeSeries(@QueryParam("range") int minutes, @QueryParam("type") String operationType) {
+    public Response getMST(@QueryParam("range") int minutes, @QueryParam("type") String operationType) {
         Response response = null;
         try {
             JsonObject timeSeries = processor.processRequest(minutes, operationType);

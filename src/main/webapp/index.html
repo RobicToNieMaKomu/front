@@ -17,17 +17,18 @@
     </head>
     <body ng-controller="mstController as mst">
         <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
-            <div class="container">
+            <div class="container" ng-controller="headerController as headCtrl">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="http://front-comparator.rhcloud.com/"><span class="glyphicon glyphicon-home"></span> Home</a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse navbar-ex1-collapse pull-right">
                     <ul class="nav navbar-nav">
-                        <li><a href="#top"><span class="glyphicon glyphicon-info-sign"></span> About</a>
+                        <li>
+                            <a href="#about" ng-click="headCtrl.showAbout()"><span class="glyphicon glyphicon-info-sign"></span> About</a>
                         </li>
                         <li>
-                            <a href="#contact"><span class="glyphicon glyphicon-envelope"></span> Contact</a>
+                            <a href="#contact" ng-click="headCtrl.showContact()"><span class="glyphicon glyphicon-envelope"></span> Contact</a>
                             <!--http://pl.linkedin.com/pub/piotr-szcz%C4%99%C5%9Bniak/77/597/489!-->
                         </li>
                     </ul>
@@ -79,5 +80,6 @@
         <script src="assets/js/jquery-1.10.2.js"></script>
         <script src="assets/js/bootstrap.js"></script>
         <script src="assets/js/cytoscape.min.js"></script>
+        <script src="assets/js/bootstrap-dialog.min.js"></script>
     </body>
 </html>
