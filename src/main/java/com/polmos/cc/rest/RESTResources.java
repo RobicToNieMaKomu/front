@@ -43,4 +43,10 @@ public class RESTResources {
         }
         return response;
     }
+    
+    @GET
+    @Path("/cores")
+    public int getCores() {
+        return Runtime.getRuntime().availableProcessors();
+    }
 }
