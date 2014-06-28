@@ -51,7 +51,7 @@
     };
 
     function loadMST($scope, $http) {
-        $http.get('http://front-comparator.rhcloud.com/rest/mst?range=1&type=bid').
+        $http.get('http://front-comparator.rhcloud.com/rest/mst?range=2&type=bid').
                 success(function(data) {
                     console.log(data);
                     var graph = new Graph(data);

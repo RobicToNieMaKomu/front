@@ -33,7 +33,7 @@ public class RESTClientImpl implements RESTClient {
                 Client client = ClientBuilder.newClient();
                 Invocation request = client.target(url).request(CONTENT_TYPE).accept(CONTENT_TYPE).buildGet();
                 String response = request.invoke(String.class);
-                logger.info("Response:" + response);
+                logger.info("Response length:" + ((response != null) ? response.length() : null));
                 result = Json.createReader(new StringReader(response)).read();
             } catch (Exception e) {
                 logger.error("Couldnt get resource", e);
