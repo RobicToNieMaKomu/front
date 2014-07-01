@@ -11,8 +11,10 @@
         <link href="assets/css/bootstrap.css" rel="stylesheet">
 
         <link href="assets/css/portfolio-item.css" rel="stylesheet">
-
+        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+        <script type="text/javascript" src="assets/js/jquery-1.10.2.js"></script>
         <script type="text/javascript" src="assets/js/angular.min.js"></script>
+        <script type="text/javascript" src="assets/js/grapher.js"></script>
         <script type="text/javascript" src="assets/js/app.js"></script>
     </head>
     <body ng-controller="mstController as mst">
@@ -43,7 +45,7 @@
             </div>
             <div class="row">
                 <div class="col-md-8">
-                    <div id="cy" style="width: 750px; height: 500px;"> </div>
+                    <div id="cy" style="min-width: 750px; min-height: 500px;"> </div>
                 </div>
                 <div class="col-md-4">
                     <h3>What is currency correlation?</h3>
@@ -76,10 +78,9 @@
             </footer>
         </div>
         <!-- /.container -->
-        <!-- JavaScript -->
-        <script src="assets/js/jquery-1.10.2.js"></script>
         <script src="assets/js/bootstrap.js"></script>
         <script src="assets/js/cytoscape.min.js"></script>
         <script src="assets/js/bootstrap-dialog.min.js"></script>
+        <script src="assets/js/info.js"></script>
     </body>
 </html>
