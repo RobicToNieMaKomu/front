@@ -10,8 +10,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javax.inject.Inject;
+import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
 import org.jboss.logging.Logger;
 
 /**
@@ -33,7 +35,7 @@ public class RequestProcessorImpl implements RequestProcessor {
         validateInput(range, type, listOfCurr);
         try {
             JsonArray timeSeries = (JsonArray) restClient.sendGetRequest(timeSeriesURL(range, type, currencies));
-            URI urlToResource = restClient.sendPostRequest(mstURL(type), timeSeries);
+            URI urlToResource = restClient.sendPostRequest(mstURL(type), packToJson(timeSeries, currencies));
             logger.info("urlToResource:" + urlToResource);
             result = (urlToResource != null) ? (JsonObject)restClient.sendGetRequest(urlToResource.toString()) : null; 
         } catch (Exception e) {
@@ -79,5 +81,12 @@ public class RequestProcessorImpl implements RequestProcessor {
             }
         }
         return output;
+    }
+    
+    private JsonObject packToJson(JsonArray jsonArray, String currencies) {
+        JsonObjectBuilder builder = Json.createObjectBuilder();
+        builder.add("currencies", currencies);
+        builder.add("data", jsonArray);
+        return builder.build();
     }
 }

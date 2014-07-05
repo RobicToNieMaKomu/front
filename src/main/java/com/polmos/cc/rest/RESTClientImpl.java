@@ -4,6 +4,7 @@ import java.io.StringReader;
 import java.net.URI;
 import javax.json.Json;
 import javax.json.JsonArray;
+import javax.json.JsonObject;
 import javax.json.JsonStructure;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -43,7 +44,7 @@ public class RESTClientImpl implements RESTClient {
     }
 
     @Override
-    public URI sendPostRequest(String url, JsonArray body) {
+    public URI sendPostRequest(String url, JsonObject body) {
         URI resourceUrl = null;
         if (url != null && body != null) {
             logger.debug("Sending post request to url:" + url);
