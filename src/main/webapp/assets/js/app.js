@@ -31,16 +31,17 @@
     var range = ['1', '2', '3', '4'];
 
     function loadMST($scope, $http) {
-        $http.get('http://front-comparator.rhcloud.com/rest/cores').
+        var currencies = new Currencies().mostPopular();
+        $http.get('http://front-comparator.rhcloud.com/rest/mst?type=ask&range=0&currencies=' + currencies).
                 success(function(data) {
-                    data = getDummy();
+                    //data = getDummy();
                     console.log(data);
                     var graph = new Graph(data);
                     var edges = graph.toEdges(data);
                     var nodes = graph.toNodes(data);
                     console.log('edges:' + edges);
                     console.log('nodes:' + nodes);
-                    new Grapher(n, e).draw(nodes, edges);
+                    new Grapher(nodes, edges).draw();
                 });
     }
     function getDummy() {
@@ -93,6 +94,27 @@
                 nodes.push(new Node(currName));
             }
             return nodes;
+        };
+    }
+
+    function Currencies() {
+        var popularCurrenciesInOrder = ["USD", "EUR", "GBP", "INR", "AUD", "CAD", "AED", "MYR", "CHF", "CNY", "THB", "SAR", "NZD", "JPY", "SGD", "PHP", "TRY", "HKD", "IDR", "ZAR", "MXN", "SEK", "BRL", "HUF", "PKR", "QAR", "OMR", "KWD", "DKK", "NOK", "RUB", "EGP", "KRW", "COP", "CZK"];
+        this.topTen = function() {
+            var tenCurr = popularCurrenciesInOrder.slice(0, 10);
+            return appendCommas(tenCurr);
+        };
+        this.mostPopular = function() {
+            return appendCommas(popularCurrenciesInOrder);
+        };
+        var appendCommas = function(array) {
+            var output = '';
+            for (var i = 0; i < array.length; i++) {
+                output = output + array[i];
+                if (i !== (array.length - 1)) {
+                    output = output + ',';
+                }
+            }
+            return output;
         };
     }
 })();
