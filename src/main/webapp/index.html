@@ -12,8 +12,10 @@
 
         <link href="assets/css/portfolio-item.css" rel="stylesheet">
         <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-        <script type="text/javascript" src="assets/js/jquery-1.10.2.js"></script>
-        <script type="text/javascript" src="assets/js/angular.min.js"></script>
+        <!--<script type="text/javascript" src="assets/js/jquery-1.10.2.js"></script>!-->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+        <!--<script type="text/javascript" src="assets/js/angular.min.js"></script>!-->
         <script type="text/javascript" src="assets/js/grapher.js"></script>
         <script type="text/javascript" src="assets/js/app.js"></script>
     </head>
@@ -51,11 +53,11 @@
                     <h3>What is currency correlation?</h3>
                     <p>Correlation coefficient is the measure of relationship between assets. If two currencies are correlated, they will move in the same direction in Forex.</p>
                     <hr/>
-                    <h4>Time frame</h4>
+                    <h4>Span of a time frame</h4>
                     <div class="btn-group btn-group-vertical">
-                        <button data-toggle="dropdown" class="btn dropdown-toggle btn-primary"><span class="glyphicon glyphicon-collapse-down"></span> Span of time frame <span class="caret"></span></button>
+                        <button data-toggle="dropdown" class="btn dropdown-toggle btn-primary"><span class="glyphicon glyphicon-collapse-down"></span> {{mst.span}} <span class="caret"></span></button>
                         <ul class="dropdown-menu" >
-                            <li ng-repeat="time in mst.timeRanges"><a href="#">{{time}}</a></li>
+                            <li ng-repeat="span in mst.timeRanges"><a href="#" ng-click="mst.setSpan(span)">{{span}}</a></li>
                         </ul>
                     </div>
                     <hr/>

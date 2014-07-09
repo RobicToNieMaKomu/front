@@ -3,12 +3,31 @@
 
     app.controller('mstController', function($scope, $http) {
         console.log('mstController!');
+        var range = ['two recent changes', 'today', 'two days', 'week'];
         this.scope = $scope;
         this.http = $http;
         this.timeRanges = range;
+        this.span = this.timeRanges[0];
         this.generateMST = function() {
             console.log('cytoscape!!!');
-            loadMST(this.scope, this.http);
+            loadMST(this.scope, this.http, spanTxtToValue(this.span));
+        };
+        this.setSpan = function(event) {
+            console.log(event);
+            this.span = event;
+        };
+        var spanTxtToValue = function(span) {
+            var result;
+            if (range[1] === span) {
+                result = 1;
+            } else if (range[2] === span) {
+                result = 2;
+            } else if (range[3] === span) {
+                result = 7;
+            } else {
+                result = 0;
+            }
+            return result;
         };
     });
     app.controller('headerController', function() {
@@ -28,13 +47,11 @@
             });
         };
     });
-    var range = ['1', '2', '3', '4'];
 
-    function loadMST($scope, $http) {
+    function loadMST($scope, $http, span) {
         var currencies = new Currencies().mostPopular();
-        $http.get('http://front-comparator.rhcloud.com/rest/mst?type=ask&range=0&currencies=' + currencies).
+        $http.get('http://front-comparator.rhcloud.com/rest/mst?type=ask&range=' + span + '&currencies=' + currencies).
                 success(function(data) {
-                    //data = getDummy();
                     console.log(data);
                     var graph = new Graph(data);
                     var edges = graph.toEdges(data);
@@ -43,16 +60,6 @@
                     console.log('nodes:' + nodes);
                     new Grapher(nodes, edges).draw();
                 });
-    }
-    function getDummy() {
-        return {
-            PLN: ['USD', 'EUR', 'AUD', 'CHF'],
-            USD: ['PLN'],
-            EUR: ['PLN'],
-            AUD: ['PLN'],
-            CHF: ['PLN', 'NOK'],
-            NOK: ['CHF']
-        };
     }
 
     function Graph(data) {

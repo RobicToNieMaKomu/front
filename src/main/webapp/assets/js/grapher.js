@@ -22,7 +22,7 @@ function Grapher(n, e) {
                     'text-opacity': 0
                 }),
         layout: {
-            name: 'concentric',
+            name: 'breadthfirst',
             concentric: function() {
                 return this.data('weight');
             },
