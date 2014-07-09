@@ -50,9 +50,16 @@
 
     function loadMST($scope, $http, span) {
         var currencies = new Currencies().mostPopular();
+        var dial = BootstrapDialog.show({
+            title: '<h4><b>Operation in progess</b></h4>',
+            type : 'type-warning',
+            message: 'It may take from few seconds for the smallest time span,</br> up to few minutes for 1 week time window</br></br> This window will be closed automatically.'
+        });
+        
         $http.get('http://front-comparator.rhcloud.com/rest/mst?type=ask&range=' + span + '&currencies=' + currencies).
                 success(function(data) {
                     console.log(data);
+                    dial.close();
                     var graph = new Graph(data);
                     var edges = graph.toEdges(data);
                     var nodes = graph.toNodes(data);
@@ -105,6 +112,10 @@
     }
 
     function Currencies() {
+        function Currency(name, selected) {
+            this.name = name;
+            this.selected = selected;
+        }
         var popularCurrenciesInOrder = ["USD", "EUR", "GBP", "INR", "AUD", "CAD", "AED", "MYR", "CHF", "CNY", "THB", "SAR", "NZD", "JPY", "SGD", "PHP", "TRY", "HKD", "IDR", "ZAR", "MXN", "SEK", "BRL", "HUF", "PKR", "QAR", "OMR", "KWD", "DKK", "NOK", "RUB", "EGP", "KRW", "COP", "CZK"];
         this.topTen = function() {
             var tenCurr = popularCurrenciesInOrder.slice(0, 10);
@@ -122,6 +133,13 @@
                 }
             }
             return output;
+        };
+        this.selected = [];
+        this.onSelect = function(curr) {
+        };
+        this.showSelected = function() {
+            var html = '<div><p>';
+            html += '</p></div>';
         };
     }
 })();

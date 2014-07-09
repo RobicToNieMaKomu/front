@@ -12,7 +12,7 @@ function Info(about) {
     this.getMessage = function() {
         var msg = '';
         if (about === 'about') {
-            msg += '<div><p>';;
+            msg += '<div><p>';
             msg += 'Graphs are constructed based on real data that comes from NY Forex. ';
             msg += 'Application polls data in 10s intervals, so refreshing site faster than that won\'t take any effect.<br/><br/>';
             msg += 'Author doesn\'t pretend to be front end jedi (he feels much better when server is near though), so leave your silly jokes for someone else:) ';
