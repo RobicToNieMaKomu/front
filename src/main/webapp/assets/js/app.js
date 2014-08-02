@@ -3,7 +3,7 @@
 
     app.controller('mstController', function($scope, $http) {
         console.log('mstController!');
-        var range = ['two recent changes', 'today', 'two days', 'week'];
+        var range = ['two recent changes', 'today'];
         this.scope = $scope;
         this.http = $http;
         this.timeRanges = range;
