@@ -45,19 +45,24 @@
             </div>
             <div class="row">
                 <div class="col-md-8">
-                    <div id="cy" style="min-width: 750px; min-height: 500px;"> </div>
+                    <div id="cy" style="margin-top: 20px; min-width: 750px; min-height: 550px;border: 1px solid"></div>
                 </div>
                 <div class="col-md-4">
                     <h3>What is currency correlation?</h3>
-                    <p>Correlation coefficient is the measure of relationship between assets. If two currencies are correlated, they will move in the same direction in Forex.</p>
+                    <p>Correlation coefficient is the measure of relationship between assets. If two currencies are correlated, they will move in the same direction in Forex (their prices tend to change similarly).</p>
+                    <hr/>
+                    <h3>What does this graph represent?</h3>
+                    <p>This is Minimum Spanning Tree showing correlations between selected currencies. It displays clusters of highly connected assets.</p>
                     <hr/>
                     <h4>Span of a time frame</h4>
-                    <div class="btn-group btn-group-vertical">
+                    <div class="btn-group">
                         <button data-toggle="dropdown" class="btn dropdown-toggle btn-primary"><span class="glyphicon glyphicon-collapse-down"></span> {{mst.span}} <span class="caret"></span></button>
                         <ul class="dropdown-menu" >
                             <li ng-repeat="span in mst.timeRanges"><a href="#" ng-click="mst.setSpan(span)">{{span}}</a></li>
                         </ul>
                     </div>
+                    <h4>Currencies</h4>
+                    <button class="btn btn-primary" ng-click=""><span class="glyphicon glyphicon-th-large"></span> Select currencies</button>
                     <hr/>
                     <h4>Minimum Spanning Tree</h4>
                     <button class="btn btn-success" ng-click="mst.generateMST()"><span class="glyphicon glyphicon-refresh"></span> Draw MST</button>

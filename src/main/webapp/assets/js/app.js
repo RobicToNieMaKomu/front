@@ -10,7 +10,7 @@
         this.span = this.timeRanges[0];
         this.generateMST = function() {
             console.log('cytoscape!!!');
-            loadMST(this.scope, this.http, spanTxtToValue(this.span));
+            loadMST(this.scope, this.http, spanTxtToValue(this.span), true);
         };
         this.setSpan = function(event) {
             console.log(event);
@@ -29,6 +29,8 @@
             }
             return result;
         };
+        // initial request
+        loadMST(this.scope, this.http, spanTxtToValue(this.span));
     });
     app.controller('headerController', function() {
         console.log('header ctrl');
@@ -48,24 +50,26 @@
         };
     });
 
-    function loadMST($scope, $http, span) {
+    function loadMST($scope, $http, span, showDial) {
         var currencies = new Currencies().mostPopular();
-        var dial = BootstrapDialog.show({
+        var dial = (showDial === true) ? BootstrapDialog.show({
             title: '<h4><b>Operation in progess</b></h4>',
             type : 'type-warning',
-            message: 'It may take from few seconds for the smallest time span,</br> up to few minutes for 1 week time window</br></br> This window will be closed automatically.'
-        });
-        
+            message: 'It may take from few seconds up to one minute during a first call</br></br> This window will be closed automatically.'
+        }) : null;
+        var grapher = new Grapher();
+        grapher.showLoadingTxt();
         $http.get('http://front-comparator.rhcloud.com/rest/mst?type=ask&range=' + span + '&currencies=' + currencies).
                 success(function(data) {
+                    grapher.hideLoadingTxt();
                     console.log(data);
-                    dial.close();
+                    (dial !== null) ? dial.close() : null;
                     var graph = new Graph(data);
                     var edges = graph.toEdges(data);
                     var nodes = graph.toNodes(data);
                     console.log('edges:' + edges);
                     console.log('nodes:' + nodes);
-                    new Grapher(nodes, edges).draw();
+                    grapher.draw(nodes, edges);
                 });
     }
 
