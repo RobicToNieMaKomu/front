@@ -1,5 +1,8 @@
 (function() {
-    var app = angular.module('mstGrapher', []);
+    $.ajaxPrefilter("json script", function(options) {
+        options.crossDomain = true;
+    });
+    var app = angular.module('mstGrapher', ['checklist-model']);
 
     app.controller('mstController', function($scope, $http) {
         console.log('mstController!');
@@ -11,6 +14,21 @@
         this.generateMST = function() {
             console.log('cytoscape!!!');
             loadMST(this.scope, this.http, spanTxtToValue(this.span), true);
+        };
+        this.roles = [
+            'guest',
+            'user',
+            'customer',
+            'admin'
+        ];
+        this.user = {
+            roles: ['user']
+        };
+        this.showCurrModal = function() {
+            BootstrapDialog.show({
+                title: 'Select currencies',
+                message: $('<div></div>').load('remote.html')
+            });
         };
         this.setSpan = function(event) {
             console.log(event);
@@ -54,7 +72,7 @@
         var currencies = new Currencies().mostPopular();
         var dial = (showDial === true) ? BootstrapDialog.show({
             title: '<h4><b>Operation in progess</b></h4>',
-            type : 'type-warning',
+            type: 'type-warning',
             message: 'It may take from few seconds up to one minute during a first call</br></br> This window will be closed automatically.'
         }) : null;
         var grapher = new Grapher();
