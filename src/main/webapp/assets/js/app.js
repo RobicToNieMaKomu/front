@@ -1,7 +1,4 @@
 (function() {
-    $.ajaxPrefilter("json script", function(options) {
-        options.crossDomain = true;
-    });
     var app = angular.module('mstGrapher', ['checklist-model']);
 
     app.controller('mstController', function($scope, $http) {
@@ -25,9 +22,10 @@
             roles: ['user']
         };
         this.showCurrModal = function() {
+
             BootstrapDialog.show({
                 title: 'Select currencies',
-                message: $('<div></div>').load('remote.html')
+                message: '<p>Sorry, not supported yet:]</p>'
             });
         };
         this.setSpan = function(event) {
