@@ -5,6 +5,7 @@ import com.polmos.cc.constants.Constants;
 import com.polmos.cc.constants.OperationType;
 import com.polmos.cc.service.ResourceManager;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -86,7 +87,11 @@ public class RequestProcessorImpl implements RequestProcessor {
     private JsonObject packToJson(JsonArray jsonArray, String currencies) {
         JsonObjectBuilder builder = Json.createObjectBuilder();
         builder.add("currencies", currencies);
-        builder.add("data", jsonArray);
+        if (jsonArray != null)  {
+            builder.add("data", jsonArray);
+        } else {
+            builder.addNull("data");
+        }
         return builder.build();
     }
 }
