@@ -1,3 +1,8 @@
-The OpenShift `jbossas` cartridge documentation can be found at:
+Description
+=========================
+It's one of the components of [Forex Currency Correlations App](https://github.com/RobicToNieMaKomu/ForexCurrencyCorrelations) which is mainly responsible for UI and communication with other microservices ([mst](https://github.com/RobicToNieMaKomu/mst) and [cc](https://github.com/RobicToNieMaKomu/cc)).
 
-https://github.com/openshift/origin-server/tree/master/cartridges/openshift-origin-cartridge-jbossas/README.md
+Cloud
+--------------
+Application is hosted in OpenShift cloud:
+http://front-comparator.rhcloud.com/
