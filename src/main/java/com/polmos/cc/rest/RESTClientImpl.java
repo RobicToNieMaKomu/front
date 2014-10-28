@@ -2,8 +2,8 @@ package com.polmos.cc.rest;
 
 import java.io.StringReader;
 import java.net.URI;
+
 import javax.json.Json;
-import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonStructure;
 import javax.ws.rs.client.Client;
@@ -11,6 +11,7 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.Invocation;
 import javax.ws.rs.core.Response;
+
 import org.jboss.logging.Logger;
 
 /**

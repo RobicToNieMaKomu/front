@@ -21,4 +21,7 @@ public class Constants {
     public static final String URL_TO_MST_SERVICE = "http://mst-comparator.rhcloud.com/rest/mst";
     public static final String JOBJECT = "jsonObject";
     public static final String JARRAY = "jsonArray";
+    public static final String URL_TO_DAILY_MST = "http://mst-comparator.rhcloud.com/rest/mst/-1";
+    
+    private Constants(){}
 }
