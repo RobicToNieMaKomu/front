@@ -70,7 +70,7 @@ public class RequestProcessorImpl implements RequestProcessor {
                 throw new IOException("Invalid input. Unsupported symbol of currency:" + curr);
             }
         }
-        if (range < 0) {
+        if (range < -1) {
             throw new IOException("Invalid input. Range should be equal to or greater than 0");
         }
         OperationType opType = OperationType.toOperationType(type);

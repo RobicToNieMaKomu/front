@@ -35,9 +35,9 @@ angular.module('mstGrapher').controller(
 					var spanTxtToValue = function(span) {
 						var result;
 						if (range[1] === span) {
-							result = 1;
-						} else if (range[2] === span) {
 							result = -1;
+						} else if (range[2] === span) {
+							result = 1;
 						} else if (range[3] === span) {
 							result = 7;
 						} else {

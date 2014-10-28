@@ -28,11 +28,11 @@ public class RESTResources {
 
     @GET
     @Path("/mst")
-    public Response getMST(@QueryParam("range") int minutes, @QueryParam("type") String operationType, @QueryParam 
+    public Response getMST(@QueryParam("range") int range, @QueryParam("type") String operationType, @QueryParam 
         ("currencies") String currencies) {
         Response response = null;
         try {
-            JsonObject timeSeries = processor.processRequest(minutes, operationType, currencies);
+            JsonObject timeSeries = processor.processRequest(range, operationType, currencies);
             if (timeSeries == null) {
                 response = Response.status(Status.NOT_FOUND).build();
             } else {
