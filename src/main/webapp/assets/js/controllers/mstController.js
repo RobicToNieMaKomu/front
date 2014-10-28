@@ -6,7 +6,7 @@ angular.module('mstGrapher').controller(
 				'$modal',
 				function($scope, $http, $modal) {
 					console.log('mstController!');
-					var range = [ 'two recent changes', 'today' ];
+					var range = [ 'two recent changes', 'last day' ];
 					this.scope = $scope;
 					this.http = $http;
 					this.timeRanges = range;
@@ -37,7 +37,7 @@ angular.module('mstGrapher').controller(
 						if (range[1] === span) {
 							result = 1;
 						} else if (range[2] === span) {
-							result = 2;
+							result = -1;
 						} else if (range[3] === span) {
 							result = 7;
 						} else {
